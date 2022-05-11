@@ -12,6 +12,7 @@ const ListTodos = () => {
             const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
                 method: "DELETE"
             });
+            console.log(deleteTodo);
 
             setTodos(todos.filter(todo => todo.todo_id !== id));
         } catch (err) {
@@ -39,7 +40,7 @@ const ListTodos = () => {
     return (
         <Fragment>
             {" "}
-            <table class="table mt-5 text-center">
+            <table className="table mt-5 text-center">
                 <thead>
                     <tr>
                         <th>Description</th>
