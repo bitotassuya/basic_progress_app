@@ -1,0 +1,14 @@
+#1. Set engines
+-----------------------------------
+ "engines": {
+    "node": "16.14.2",
+    "npm": "8.5.0"
+  }
+
+#2. Heroku cli
+-----------------------------------
+sudo yarn global add heroku
+
+#3. Check log
+-----------------------------------
+heroku logs --tail --app heroku-cm-demo
