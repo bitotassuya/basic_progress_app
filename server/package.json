@@ -14,7 +14,9 @@
 
     "predeploy": "npm run build",
 
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "dev":"nodemon",
+    "start":"node index.js"
 
   },
 

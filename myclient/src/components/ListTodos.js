@@ -46,6 +46,7 @@ const ListTodos = () => {
                         <th>Description</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Owner</th>
                     </tr>
                 </thead>
                 <tbody>

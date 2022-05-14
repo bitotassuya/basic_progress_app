@@ -3,6 +3,10 @@ const app = express();
 const cors = require("cors");
 const pool = require("./db");
 const PORT = process.env.PORT || 5000
+const bodyParser = require("body-parser");
+const db = require("./db");
+
+
 
 
 //middleware
@@ -80,6 +84,45 @@ app.delete("/todos/:id", async (req, res) => {
         console.log(err.message);
     }
 });
+
+/* nginx*/
+const { Pool } = require("pg");
+const pgClient = new Pool({
+    user: db.pgUser,
+    host: db.pgHost,
+    database: db.pgDatabase,
+    password: db.pgPassword,
+    port: db.pgPort
+});
+
+pgClient.on("connect", client => {
+    client
+        .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+        .catch(err => console.log("PG ERROR", err));
+});
+
+//Express route definitions
+app.get("/", (req, res) => {
+    res.send("Hi");
+});
+
+// get the values
+app.get("/values/all", async (req, res) => {
+    const values = await pgClient.query("SELECT * FROM values");
+
+    res.send(values);
+});
+
+// now the post -> insert value
+app.post("/values", async (req, res) => {
+    if (!req.body.value) res.send({ working: false });
+
+    pgClient.query("INSERT INTO values(number) VALUES($1)", [req.body.value]);
+
+    res.send({ working: true });
+});
+/* end nginx*/
+
 
 
 app.listen(5000, () => {
