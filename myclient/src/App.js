@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import OtherPage from "./OtherPage";
-import MainComponent from "./MainComponent";
+import MainComponent from "./components/MainComponent";
 //components
 
 import InputTodo from "./components/inputTodo";
@@ -20,7 +20,7 @@ function App() {
             This is a multicontainer application</div>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
-
+          <MainComponent />
         </header>
         <div className="main">
           <Routes>
